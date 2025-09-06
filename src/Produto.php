@@ -5,9 +5,9 @@ class Produto{
     private float $preco;
     private int $estoque;
 
-    public function __construct__(int $id, string $name,float $preco,int $estoque ){
+    public function __construct__(int $id, string $nome,float $preco,int $estoque ){
        $this->id=$id;
-       $this->name=$name;
+       $this->nome=$nome;
        $this->preco=$preco;
        $this->estoque=$estoque;
     }
