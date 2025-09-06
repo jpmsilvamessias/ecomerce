@@ -1,14 +1,3 @@
-public class Carrinho{
-    private $item;
-    
-    public function __contruct($item){
-        $this->item = $item;
-    }
+<?php
 
-    public function validacoesDeProduto(){
-        if()
-    }
-
-
-    
-}
+?>
