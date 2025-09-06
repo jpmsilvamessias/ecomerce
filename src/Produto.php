@@ -1,11 +1,11 @@
 <?php
 class Produto{
     private int $id; 
-    private string $name;
+    private string $nome;
     private float $preco;
     private int $estoque;
 
-    public function __construct__(int $id, string $name,float $preco,int $idade){
+    public function __construct__(int $id, string $name,float $preco,int $estoque ){
        $this->id=$id;
        $this->name=$name;
        $this->preco=$preco;
@@ -40,6 +40,16 @@ class Produto{
 
     public  function  setPreco($preco): void{
         $this->preco=$preco;
+    }
+
+    public function getNestoque(): int{
+        return $this->estoque;
+    }
+
+    public function setNestoque($estoque): void
+    {
+        $this->estoque=$estoque;
+
     }
   
 
