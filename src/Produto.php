@@ -49,6 +49,18 @@ class Produto{
     public function setEstoque($estoque): void
     {
         $this->estoque=$estoque;
+    }
 
+    public function reduzirEstoque(int $quantidade): bool{
+        if ($this->estoque >= $quantidade) {
+            $this->estoque -= $quantidade;
+            return true;
+        }
+        return false;
+    } 
+
+
+    public function aumentarEstoque(int $quantidade): void{
+        $this->estoque +=$quantidade;
     }
 }
