@@ -42,18 +42,13 @@ class Produto{
         $this->preco=$preco;
     }
 
-    public function getNestoque(): int{
+    public function getEstoque(): int{
         return $this->estoque;
     }
 
-    public function setNestoque($estoque): void
+    public function setEstoque($estoque): void
     {
         $this->estoque=$estoque;
 
     }
-  
-
-    
-
-
 }
