@@ -55,5 +55,4 @@ class Produto{
        $this->estoque-=$quantidade;
     } 
 
-
 }
