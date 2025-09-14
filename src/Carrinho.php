@@ -10,11 +10,11 @@
         }
 
         public function adcionarnoCarrinho(int $id,int $quantidade):void {
-            if(!validaId()){
+            if($this->validaId($id)){
                 throw new Exception("erro id nao existe");
             }
 
-            if(!validaEstoque($quantidade)){
+            if($this->validaEstoque($quantidade)){
                 throw new Exception("quantidade maior que estoque");
             }
 
@@ -35,28 +35,34 @@
 
 
         private function validaEstoque(int $quantidade):bool{
-            if($this->produto->getEstoque() <= $quantidade){
+            if($this->produto->getEstoque() < $quantidade){
                 return false;
             }
                 return true;
         }
 
         private function removerItem(int $id): void{
-            //Validar se o item existe no carrinho.
-            //Atualizar carrinho e devolver estoque.
+            foreach($this->itens as $itens){
+                if($itens['idproduto']===$id){
+                    unset($this->itens[$itens]);
+                    break;
+                }
+            }
         }
 
         private function listarItemCarrinho(): array{
-            // Mostrar os itens adicionados com quantidade, subtotal e total
+           return $this->itens;
         }
 
         private function calcularTotal(): void {
-            //Somar todos os subtotais.
-        }
-
+            $total = 0;
+            foreach ($this->itens as $item) {
+                $total += $item['subtotal'];
+            }
+            return $total;
+    }
         private function aplicacaoDesconto(): void{
-            //Regra simples: cupom DESCONTO10 → 10% no total.
-            //O desconto deve ser aplicado no cálculo do total final.
+           
         }
     
 
