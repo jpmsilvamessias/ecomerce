@@ -1,0 +1,105 @@
+# Sistema de Carrinho de Compras em PHP
+
+## Dupla
+- Nome: Guilherme Vicente Figueira
+- Nome: Joaõ Pedro Messias Da Silva
+- RA: 1992017
+- RA:
+
+---
+
+## Estrutura de Pastas
+/carrinho
+│
+├── src/ # Contém as classes do projeto
+│ ├── Produto.php
+│ └── Carrinho.php
+│
+├── docs/ # Documentação complementar (se necessário)
+│ └── README.md
+│
+└── index.php # Script de teste do carrinho
+
+---
+
+## Instruções de Execução (XAMPP)
+1. Certifique-se de que o XAMPP está instalado e em execução.  
+2. Copie a pasta `carrinho` para o diretório `htdocs` do XAMPP (geralmente `C:\xampp\htdocs\`).  
+3. Abra o navegador e acesse:  
+http://localhost/carrinho/index.php
+
+
+4. O script irá executar os casos de teste do carrinho e mostrar a saída na tela.
+
+---
+
+## Funcionalidades Implementadas
+
+O sistema permite simular um carrinho de compras básico com as seguintes funcionalidades:
+
+1. **Adicionar produto ao carrinho**
+   - Valida se o produto existe.  
+   - Verifica se a quantidade solicitada está disponível em estoque.  
+   - Atualiza o carrinho com o produto e calcula o subtotal.  
+
+2. **Remover produto do carrinho**
+   - Permite remover um item pelo seu ID.  
+   - Atualiza o carrinho automaticamente.  
+
+3. **Listar itens do carrinho**
+   - Exibe ID, quantidade e subtotal de cada produto no carrinho.  
+
+4. **Calcular total**
+   - Soma todos os subtotais para mostrar o valor total do carrinho.  
+
+5. **Aplicar desconto**
+   - Aplica um desconto fixo de 10% sobre o total do carrinho.
+
+---
+
+## Regras de Negócio
+- Cada carrinho está associado a um único produto no momento da criação.  
+- O estoque não pode ser negativo; se o usuário tentar adicionar mais do que o disponível, o sistema alerta.  
+- O desconto é aplicado apenas quando solicitado explicitamente.  
+
+---
+
+## Limitações
+- Não há persistência em banco de dados; todos os dados são temporários na execução do script.  
+- Cada carrinho é instanciado manualmente no script de teste (`index.php`).  
+- Não há interface gráfica; toda a saída é exibida no navegador via HTML básico.  
+
+---
+
+## Exemplos de Uso (Casos de Teste)
+O arquivo `index.php` contém os seguintes casos de teste:
+
+### Caso 1: Adicionar produto válido
+- Produto: Camiseta  
+- Quantidade: 2  
+- Saída: Lista de itens com subtotal calculado.
+
+### Caso 2: Adicionar produto além do estoque
+- Produto: Tênis  
+- Quantidade: 10 (estoque disponível: 3)  
+- Saída: Mensagem de erro "Quantidade maior que estoque". 
+- Saída: "Carrinho vazio"
+
+### Caso 3: Remover produto do carrinho
+- Produto: Calça Jeans  
+- Quantidade: 3  
+- Ação: Produto removido do carrinho  
+- Saída: "Carrinho vazio".  
+
+### Caso 4: Aplicação de cupom de desconto
+- Produto: Calça Jeans  
+- Quantidade: 3  
+- Ação: Aplica 10% de desconto no total  
+- Saída: Lista de itens com subtotal e total atualizado com desconto.
+
+---
+
+## Observações
+- O projeto segue as **regras de PSR-12**, garantindo legibilidade e boas práticas de codificação em PHP.  
+- Pode ser expandido para múltiplos produtos por carrinho e integração com banco de dados.
+

@@ -51,7 +51,8 @@ class Produto{
         $this->estoque=$estoque;
     }
 
-    public function reduzirEstoque(int $quantidade): void{
+    public function reduzirEstoque(int $quantidade): void
+    {
        $this->estoque-=$quantidade;
     } 
 

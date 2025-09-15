@@ -4,65 +4,77 @@
         private array $itens = []; 
         private const DESCONTO10 = 0.10;
         
-        public function __construct(array $itens = [],Produto $produto){
+        public function __construct(Produto $produto, array $itens = []) 
+        {
           $this->itens = $itens;
           $this->produto = $produto;
         }
 
-        public function adcionarnoCarrinho(int $id,int $quantidade):void {
-            if($this->validaId($id)){
-                throw new Exception("erro id nao existe");
+        public function adcionarNoCarrinho(int $id, int $quantidade):void 
+        {
+            if(!$this->validaId($id)) {
+                echo"Erro id nao existe.<br>";
+                return;
             }
 
-            if($this->validaEstoque($quantidade)){
-                throw new Exception("quantidade maior que estoque");
+            if(!$this->validaEstoque($quantidade)) {
+                echo"Quantidade maior que estoque.<br>";
+                return;
             }
 
-            $this->itens[]=[
+            $this->itens[] = [
                 'idProduto'=> $id,
                 'quantidade'=> $quantidade,
-                'subtotal'=>$this->produto->getPreco()*$quantidade,
+                'subtotal'=>$this->produto->getPreco() * $quantidade,
             ];
          
         }
 
-        private function validaId(int $id):bool{
-            if($this->produto->getId() != $id){
+        public function validaId(int $id):bool
+        {
+            if($this->produto->getId() != $id) {
                 return false;
             }
             return true;
         }
 
 
-        private function validaEstoque(int $quantidade):bool{
-            if($this->produto->getEstoque() < $quantidade){
+        public function validaEstoque(int $quantidade):bool 
+        {
+            if($this->produto->getEstoque() < $quantidade) {
                 return false;
             }
                 return true;
         }
 
-        private function removerItem(int $id): void{
-            foreach($this->itens as $itens){
-                if($itens['idproduto']===$id){
-                    unset($this->itens[$itens]);
+        public function removerItem(int $id): void 
+        {
+            foreach($this->itens as $index => $item) {
+                if($item['idProduto']===$id) {
+                    unset($this->itens[$index]);
                     break;
                 }
             }
         }
 
-        private function listarItemCarrinho(): array{
+        public function listarItemCarrinho(): array
+        {
            return $this->itens;
         }
 
-        private function calcularTotal(): void {
+        public function calcularTotal(): float 
+        {
             $total = 0;
             foreach ($this->itens as $item) {
                 $total += $item['subtotal'];
             }
             return $total;
-    }
-        private function aplicacaoDesconto(): void{
-           
+        }
+        public function aplicacaoDesconto(): float 
+        {
+            $total = $this->calcularTotal();
+            return $total - ($total * Carrinho::DESCONTO10);
+
         }
     
 
